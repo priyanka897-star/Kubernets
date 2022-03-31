@@ -184,8 +184,8 @@ caused by: context deadline exceeded
 Error: failed to create cluster "chatapp"
 
 C:\Users\User>aws configure
-AWS Access Key ID [****************ZOHE]: AKIAUFE2F5U5NSTQZOHE
-AWS Secret Access Key [****************DJnM]: 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
+AWS Access Key ID 
+AWS Secret Access Key [****************DJnM]: 
 Default region name [us-east-2]:
 Default output format [json]:
 
