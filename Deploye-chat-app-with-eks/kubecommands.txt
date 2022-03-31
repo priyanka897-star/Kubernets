@@ -1,0 +1,1132 @@
+Microsoft Windows [Version 10.0.19041.1415]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+error: error parsing app-deployment.yaml: error converting YAML to JSON: yaml: line 11: could not find expected ':'
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+error: error parsing app-deployment.yaml: error converting YAML to JSON: yaml: line 11: could not find expected ':'
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+error: error parsing app-deployment.yaml: error converting YAML to JSON: yaml: line 13: did not find expected key
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+error: error parsing app-deployment.yaml: error converting YAML to JSON: yaml: line 13: did not find expected key
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+error: error parsing app-deployment.yaml: error converting YAML to JSON: yaml: line 13: did not find expected key
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+The Deployment "app1" is invalid: spec.template.metadata.labels: Invalid value: map[string]string{"name":"app1"}: `selector` does not match template `labels`
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+
+deployment.apps/app1 created
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6b45b84c5b-2js6m   1/1     Running            0          39s
+app1-6b45b84c5b-m5w2j   1/1     Running            0          39s
+mypod                   0/1     CrashLoopBackOff   430        36h
+mypod1                  0/1     CrashLoopBackOff   430        36h
+
+C:\Users\User>kubectl  get deployment
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+app1   2/2     2            2           100s
+
+C:\Users\User>kubctl get rs
+'kubctl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get rs
+NAME              DESIRED   CURRENT   READY   AGE
+app1-6b45b84c5b   2         2         2       2m11s
+
+C:\Users\User>kubectl get pods -0 wide
+Error: unknown shorthand flag: '0' in -0
+See 'kubectl get --help' for usage.
+
+C:\Users\User>kubectl get pods -o wide
+NAME                    READY   STATUS             RESTARTS   AGE     IP             NODE                                          NOMINATED NODE   READINESS GATES
+app1-6b45b84c5b-2js6m   1/1     Running            0          4m49s   172.31.40.78   ip-172-31-34-205.us-east-2.compute.internal   <none>           <none>
+app1-6b45b84c5b-m5w2j   1/1     Running            0          4m49s   172.31.10.43   ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+mypod                   0/1     CrashLoopBackOff   431        36h     172.31.9.251   ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+mypod1                  0/1     CrashLoopBackOff   430        36h     172.31.6.140   ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+
+C:\Users\User>kubectl get pods --show-labels
+NAME                    READY   STATUS             RESTARTS   AGE   LABELS
+app1-6b45b84c5b-2js6m   1/1     Running            0          26m   app=app1,pod-template-hash=6b45b84c5b
+app1-6b45b84c5b-m5w2j   1/1     Running            0          26m   app=app1,pod-template-hash=6b45b84c5b
+mypod                   0/1     CrashLoopBackOff   435        37h   run=mypod
+mypod1                  0/1     Completed          435        36h   run=mypod1
+
+C:\Users\User>kubectl  apply -f app-service.yamlaml
+error: the path "app-service.yamlaml" does not exist
+
+C:\Users\User>kubectl  apply -f app-service.yaml
+error: error validating "app-service.yaml": error validating data: apiVersion not set; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl  apply -f app-service.yaml
+error: error validating "app-service.yaml": error validating data: ValidationError(Service.spec.ports[0]): unknown field "protocols" in io.k8s.api.core.v1.ServicePort; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl  apply -f app-service.yaml
+service/appsvc1 created
+
+C:\Users\User>kubectl get svc
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)        AGE
+appsvc1      LoadBalancer   10.100.234.113   a84d9218c03d246c8908aee5feaa4c4c-1253542364.us-east-2.elb.amazonaws.com   80:31296/TCP   37s
+kubernetes   ClusterIP      10.100.0.1       <none>                                                                    443/TCP        39h
+
+C:\Users\User>kubectl  apply -f app-service.yaml
+service/appsvc1 configured
+
+C:\Users\User>kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+appsvc1      NodePort    10.100.234.113   <none>        80:31296/TCP   6m9s
+kubernetes   ClusterIP   10.100.0.1       <none>        443/TCP        39h
+
+C:\Users\User>kubectl  apply -f app-deployment.yaml
+deployment.apps/app1 configured
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-9nf98   1/1     Running            0          50s
+app1-6987c89497-lbpjj   1/1     Running            0          55s
+mypod                   0/1     CrashLoopBackOff   440        37h
+mypod1                  0/1     Completed          440        37h
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-9nf98   1/1     Running            0          2m8s
+app1-6987c89497-lbpjj   1/1     Running            0          2m13s
+mypod                   0/1     CrashLoopBackOff   440        37h
+mypod1                  0/1     CrashLoopBackOff   440        37h
+
+C:\Users\User>kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+appsvc1      NodePort    10.100.234.113   <none>        80:31296/TCP   19m
+kubernetes   ClusterIP   10.100.0.1       <none>        443/TCP        39h
+
+C:\Users\User>kubectl  appsvc1 appsvc1-nodeport
+Error: unknown command "appsvc1" for "kubectl"
+Run 'kubectl --help' for usage.
+
+C:\Users\User>kubectl delete  appsvc1 appsvc1-nodeport
+error: the server doesn't have a resource type "appsvc1"
+
+C:\Users\User>kubectl delete svc  appsvc1 appsvc1-nodeport
+service "appsvc1" deleted
+Error from server (NotFound): services "appsvc1-nodeport" not found
+
+C:\Users\User>kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   39h
+
+C:\Users\User>kubectl  apply -f app-service.yaml
+service/appsvc1 created
+
+C:\Users\User>kubectl get svc
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP                                                               PORT(S)        AGE
+appsvc1      LoadBalancer   10.100.215.85   a3699c2986c0747819c5a1e38dbe69a9-1897980145.us-east-2.elb.amazonaws.com   80:30522/TCP   8s
+kubernetes   ClusterIP      10.100.0.1      <none>                                                                    443/TCP        39h
+
+C:\Users\User>docker pull renu100/backend_imageupdated
+Using default tag: latest
+error during connect: This error may indicate that the docker daemon is not running.: Post "http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/images/create?fromImage=renu100%2Fbackend_imageupdated&tag=latest": open //./pipe/docker_engine: The system cannot find the file specified.
+
+C:\Users\User>
+#chatapp deployment
+C:\Users\User>kubectl appy -f de-secret.yaml
+^C
+C:\Users\User>kubectl appy -f db-secret.yaml
+Error: unknown command "appy" for "kubectl"
+
+Did you mean this?
+        apply
+
+Run 'kubectl --help' for usage.
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+error: the path "db-secret.yaml" does not exist
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+The Secret "db_secret" is invalid: metadata.name: Invalid value: "db_secret": a lowercase RFC 1123 subdomain must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character (e.g. 'example.com', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*')
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+error: error validating "db-secret.yaml": error validating data: ValidationError(Secret.metadata): invalid type for io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta: got "array", expected "map"; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+secret/db-secret created
+
+C:\Users\User>kubctl get pods
+'kubctl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-mbnlh   1/1     Running            0          31h
+app1-6987c89497-qmhf6   1/1     Running            0          31h
+mypod                   0/1     CrashLoopBackOff   831        2d22h
+mypod1                  0/1     CrashLoopBackOff   831        2d22h
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-mbnlh   1/1     Running            0          31h
+app1-6987c89497-qmhf6   1/1     Running            0          31h
+mypod                   0/1     CrashLoopBackOff   831        2d22h
+mypod1                  0/1     CrashLoopBackOff   831        2d22h
+
+C:\Users\User>kubectl get secret
+NAME                  TYPE                                  DATA   AGE
+db-secret             Opaque                                4      112s
+default-token-8clw7   kubernetes.io/service-account-token   3      3d
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 21: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: [ValidationError(Deployment.spec.template.spec): unknown field "env" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "image" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "ports" in io.k8s.api.core.v1.PodSpec]; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: [ValidationError(Deployment.spec.template.spec): unknown field "env" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "image" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "ports" in io.k8s.api.core.v1.PodSpec]; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: [ValidationError(Deployment.spec.template.spec): unknown field "env" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "image" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "port" in io.k8s.api.core.v1.PodSpec]; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 31: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: ValidationError(Deployment.spec.template.spec): unknown field "ports" in io.k8s.api.core.v1.PodSpec; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 40: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 40: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+deployment.apps/mydb created
+
+C:\Users\User>kubctl get deployments
+'kubctl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get deployments
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+app1   2/2     2            2           34h
+mydb   1/1     1            1           33s
+
+C:\Users\User>kubectl get endpoints
+NAME         ENDPOINTS                             AGE
+appsvc1      172.31.3.47:80,172.31.40.78:80        33h
+kubernetes   172.31.13.128:443,172.31.31.207:443   3d1h
+
+C:\Users\User>kubectl apply -f db-service.yaml
+error: error parsing db-service.yaml: error converting YAML to JSON: yaml: line 9: could not find expected ':'
+
+C:\Users\User>kubectl apply -f db-service.yaml
+error: error validating "db-service.yaml": error validating data: ValidationError(Service): unknown field "name" in io.k8s.api.core.v1.Service; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-service.yaml
+error: error validating "db-service.yaml": error validating data: ValidationError(Service): unknown field "name" in io.k8s.api.core.v1.Service; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-service.yaml
+service/db-service created
+
+C:\Users\User>kubectl get endpoints
+NAME         ENDPOINTS                             AGE
+appsvc1      172.31.3.47:80,172.31.40.78:80        33h
+db-service   172.31.36.40:3306                     10s
+kubernetes   172.31.13.128:443,172.31.31.207:443   3d1h
+
+C:\Users\User>kubctl get pods
+'kubctl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-mbnlh   1/1     Running            0          31h
+app1-6987c89497-qmhf6   1/1     Running            0          31h
+mydb-cd5fc5c8-87cll     1/1     Running            0          5m19s
+mypod                   0/1     CrashLoopBackOff   836        2d23h
+mypod1                  0/1     CrashLoopBackOff   836        2d22h
+
+C:\Users\User>kubectl get pods -o wide
+NAME                    READY   STATUS             RESTARTS   AGE     IP             NODE                                          NOMINATED NODE   READINESS GATES
+app1-6987c89497-mbnlh   1/1     Running            0          31h     172.31.40.78   ip-172-31-34-205.us-east-2.compute.internal   <none>           <none>
+app1-6987c89497-qmhf6   1/1     Running            0          31h     172.31.3.47    ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+mydb-cd5fc5c8-87cll     1/1     Running            0          5m40s   172.31.36.40   ip-172-31-34-205.us-east-2.compute.internal   <none>           <none>
+mypod                   0/1     CrashLoopBackOff   836        2d23h   172.31.9.251   ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+mypod1                  0/1     CrashLoopBackOff   836        2d22h   172.31.6.140   ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+
+C:\Users\User>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\User>kubectl appy -f de-secret.yaml
+^C
+C:\Users\User>kubectl appy -f db-secret.yaml
+Error: unknown command "appy" for "kubectl"
+
+Did you mean this?
+        apply
+
+Run 'kubectl --help' for usage.
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+error: the path "db-secret.yaml" does not exist
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+The Secret "db_secret" is invalid: metadata.name: Invalid value: "db_secret": a lowercase RFC 1123 subdomain must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character (e.g. 'example.com', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*')
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+error: error validating "db-secret.yaml": error validating data: ValidationError(Secret.metadata): invalid type for io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta: got "array", expected "map"; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-secret.yaml
+secret/db-secret created
+
+C:\Users\User>kubctl get pods
+'kubctl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-mbnlh   1/1     Running            0          31h
+app1-6987c89497-qmhf6   1/1     Running            0          31h
+mypod                   0/1     CrashLoopBackOff   831        2d22h
+mypod1                  0/1     CrashLoopBackOff   831        2d22h
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-mbnlh   1/1     Running            0          31h
+app1-6987c89497-qmhf6   1/1     Running            0          31h
+mypod                   0/1     CrashLoopBackOff   831        2d22h
+mypod1                  0/1     CrashLoopBackOff   831        2d22h
+
+C:\Users\User>kubectl get secret
+NAME                  TYPE                                  DATA   AGE
+db-secret             Opaque                                4      112s
+default-token-8clw7   kubernetes.io/service-account-token   3      3d
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 21: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: [ValidationError(Deployment.spec.template.spec): unknown field "env" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "image" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "ports" in io.k8s.api.core.v1.PodSpec]; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: [ValidationError(Deployment.spec.template.spec): unknown field "env" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "image" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "ports" in io.k8s.api.core.v1.PodSpec]; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: [ValidationError(Deployment.spec.template.spec): unknown field "env" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "image" in io.k8s.api.core.v1.PodSpec, ValidationError(Deployment.spec.template.spec): unknown field "port" in io.k8s.api.core.v1.PodSpec]; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 31: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error validating "db-deployment.yaml": error validating data: ValidationError(Deployment.spec.template.spec): unknown field "ports" in io.k8s.api.core.v1.PodSpec; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 40: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+error: error parsing db-deployment.yaml: error converting YAML to JSON: yaml: line 40: did not find expected key
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+deployment.apps/mydb created
+
+C:\Users\User>kubctl get deployments
+'kubctl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get deployments
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+app1   2/2     2            2           34h
+mydb   1/1     1            1           33s
+
+C:\Users\User>kubectl get endpoints
+NAME         ENDPOINTS                             AGE
+appsvc1      172.31.3.47:80,172.31.40.78:80        33h
+kubernetes   172.31.13.128:443,172.31.31.207:443   3d1h
+
+C:\Users\User>kubectl apply -f db-service.yaml
+error: error parsing db-service.yaml: error converting YAML to JSON: yaml: line 9: could not find expected ':'
+
+C:\Users\User>kubectl apply -f db-service.yaml
+error: error validating "db-service.yaml": error validating data: ValidationError(Service): unknown field "name" in io.k8s.api.core.v1.Service; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-service.yaml
+error: error validating "db-service.yaml": error validating data: ValidationError(Service): unknown field "name" in io.k8s.api.core.v1.Service; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\User>kubectl apply -f db-service.yaml
+service/db-service created
+
+C:\Users\User>kubectl get endpoints
+NAME         ENDPOINTS                             AGE
+appsvc1      172.31.3.47:80,172.31.40.78:80        33h
+db-service   172.31.36.40:3306                     10s
+kubernetes   172.31.13.128:443,172.31.31.207:443   3d1h
+
+C:\Users\User>kubctl get pods
+'kubctl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+app1-6987c89497-mbnlh   1/1     Running            0          31h
+app1-6987c89497-qmhf6   1/1     Running            0          31h
+mydb-cd5fc5c8-87cll     1/1     Running            0          5m19s
+mypod                   0/1     CrashLoopBackOff   836        2d23h
+mypod1                  0/1     CrashLoopBackOff   836        2d22h
+
+C:\Users\User>kubectl get pods -o wide
+NAME                    READY   STATUS             RESTARTS   AGE     IP             NODE                                          NOMINATED NODE   READINESS GATES
+app1-6987c89497-mbnlh   1/1     Running            0          31h     172.31.40.78   ip-172-31-34-205.us-east-2.compute.internal   <none>           <none>
+app1-6987c89497-qmhf6   1/1     Running            0          31h     172.31.3.47    ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+mydb-cd5fc5c8-87cll     1/1     Running            0          5m40s   172.31.36.40   ip-172-31-34-205.us-east-2.compute.internal   <none>           <none>
+mypod                   0/1     CrashLoopBackOff   836        2d23h   172.31.9.251   ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+mypod1                  0/1     CrashLoopBackOff   836        2d22h   172.31.6.140   ip-172-31-14-116.us-east-2.compute.internal   <none>           <none>
+
+C:\Users\User>
+C:\Users\User>kubectl get pods
+NAME                  READY   STATUS                       RESTARTS   AGE
+app2-cf898466-gztr4   0/1     CreateContainerConfigError   0          11m
+app2-cf898466-z2ptg   0/1     CreateContainerConfigError   0          11m
+mydb-cd5fc5c8-rthdg   1/1     Running                      0          31m
+
+C:\Users\User>kubectl delete pod mydb-cd5fc5c8-rthdg
+pod "mydb-cd5fc5c8-rthdg" deleted
+^C
+C:\Users\User>kubectl apply -f db-secret.yaml
+secret/db-secret configured
+
+C:\Users\User>kubectl apply -f db-deployment.yaml
+deployment.apps/db created
+
+C:\Users\User>kubectl apply -f db-service.yaml
+service/db-service configured
+
+C:\Users\User>kubectl get pods
+NAME                  READY   STATUS                       RESTARTS   AGE
+app2-cf898466-gztr4   0/1     CreateContainerConfigError   0          13m
+app2-cf898466-z2ptg   0/1     CreateContainerConfigError   0          13m
+db-5696c95474-sn6lc   1/1     Running                      0          51s
+mydb-cd5fc5c8-bgqtb   1/1     Running                      0          85s
+
+C:\Users\User>kubectl describe db-service
+error: the server doesn't have a resource type "db-service"
+
+C:\Users\User>kubectl describe  service db-service
+Name:              db-service
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=db
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.100.228.79
+IPs:               10.100.228.79
+Port:              <unset>  3306/TCP
+TargetPort:        3306/TCP
+Endpoints:         172.31.25.26:3306
+Session Affinity:  None
+Events:            <none>
+
+C:\Users\User>kubectl get service
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)          AGE
+backendservice   LoadBalancer   10.100.148.179   ac3dcc1cc99a64947a2c7e73ccb3e076-143940512.us-east-2.elb.amazonaws.com   8000:31679/TCP   15m
+db-service       ClusterIP      10.100.228.79    <none>                                                                   3306/TCP         34m
+kubernetes       ClusterIP      10.100.0.1       <none>                                                                   443/TCP          65m
+
+C:\Users\User>kubectl get svc
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)          AGE
+backendservice   LoadBalancer   10.100.148.179   ac3dcc1cc99a64947a2c7e73ccb3e076-143940512.us-east-2.elb.amazonaws.com   8000:31679/TCP   16m
+db-service       ClusterIP      10.100.228.79    <none>                                                                   3306/TCP         35m
+kubernetes       ClusterIP      10.100.0.1       <none>                                                                   443/TCP          66m
+
+C:\Users\User>kubectl apply -f app-configmap.yaml -f backendsecret.yaml -f chatappbackend.yaml -f backendservice.yaml
+configmap/app-configmap unchanged
+secret/app-secret configured
+deployment.apps/app1 created
+service/backendapp created
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS                       RESTARTS   AGE
+app1-5b48b45d84-wv8ws   0/1     CreateContainerConfigError   0          27s
+app1-5b48b45d84-x45vw   0/1     CreateContainerConfigError   0          27s
+app2-cf898466-gztr4     0/1     CreateContainerConfigError   0          32m
+app2-cf898466-z2ptg     0/1     CreateContainerConfigError   0          32m
+db-5696c95474-sn6lc     1/1     Running                      0          19m
+mydb-cd5fc5c8-bgqtb     1/1     Running                      0          20m
+
+C:\Users\User>kubectl describe pods app1-5b48b45d84-wv8ws
+Name:         app1-5b48b45d84-wv8ws
+Namespace:    default
+Priority:     0
+Node:         ip-172-31-12-174.us-east-2.compute.internal/172.31.12.174
+Start Time:   Sun, 13 Mar 2022 20:00:47 +0530
+Labels:       app=app1
+              pod-template-hash=5b48b45d84
+Annotations:  kubernetes.io/psp: eks.privileged
+Status:       Pending
+IP:           172.31.14.88
+IPs:
+  IP:           172.31.14.88
+Controlled By:  ReplicaSet/app1-5b48b45d84
+Containers:
+  app1:
+    Container ID:
+    Image:          akashdockerkhandare/chatapp:4.0
+    Image ID:
+    Port:           8000/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CreateContainerConfigError
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DATABASE_TYPE:  <set to the key 'DATABASE_TYPE' of config map 'app-configmap'>  Optional: false
+      DATABASE_NAME:  <set to the key 'DATABASE_NAME' of config map 'app-configmap'>  Optional: false
+      USER_NAME:      <set to the key 'USER_NAME' in secret 'db-secret'>              Optional: false
+      PASSWORD:       <set to the key 'PASSWORD' in secret 'db-secret'>               Optional: false
+      HOST_NAME:      <set to the key 'HOST_NAME' of config map 'app-configmap'>      Optional: false
+      PORT:           <set to the key 'PORT' of config map 'app-configmap'>           Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-kgpjn (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             False
+  ContainersReady   False
+  PodScheduled      True
+Volumes:
+  kube-api-access-kgpjn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                 From               Message
+  ----     ------     ----                ----               -------
+  Normal   Scheduled  117s                default-scheduler  Successfully assigned default/app1-5b48b45d84-wv8ws to ip-172-31-12-174.us-east-2.compute.internal
+  Normal   Pulled     1s (x11 over 116s)  kubelet            Container image "akashdockerkhandare/chatapp:4.0" already present on machine
+  Warning  Failed     1s (x11 over 116s)  kubelet            Error: couldn't find key USER_NAME in Secret default/db-secret
+
+C:\Users\User>kubectl apply -f app-configmap.yaml -f backendsecret.yaml -f chatappbackend.yaml -f backendservice.yaml
+configmap/app-configmap unchanged
+secret/app-secret configured
+deployment.apps/app1 configured
+service/backendapp unchanged
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx   1/1     Running                      0          23s
+app1-6b664dc6cb-mfkrk   1/1     Running                      0          25s
+app2-cf898466-gztr4     0/1     CreateContainerConfigError   0          41m
+app2-cf898466-z2ptg     0/1     CreateContainerConfigError   0          41m
+db-5696c95474-sn6lc     1/1     Running                      0          28m
+mydb-cd5fc5c8-bgqtb     1/1     Running                      0          28m
+
+C:\Users\User>kubectl get svc
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
+backendapp       LoadBalancer   10.100.84.13     a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com   8000:30832/TCP   10m
+backendservice   LoadBalancer   10.100.148.179   ac3dcc1cc99a64947a2c7e73ccb3e076-143940512.us-east-2.elb.amazonaws.com    8000:31679/TCP   42m
+db-service       ClusterIP      10.100.228.79    <none>                                                                    3306/TCP         61m
+kubernetes       ClusterIP      10.100.0.1       <none>                                                                    443/TCP          92m
+
+C:\Users\User>kubectl get pods
+NAME                    READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx   1/1     Running                      0          7m31s
+app1-6b664dc6cb-mfkrk   1/1     Running                      0          7m33s
+app2-cf898466-gztr4     0/1     CreateContainerConfigError   0          48m
+app2-cf898466-z2ptg     0/1     CreateContainerConfigError   0          48m
+db-5696c95474-sn6lc     1/1     Running                      0          35m
+mydb-cd5fc5c8-bgqtb     1/1     Running                      0          35m
+
+C:\Users\User>kubectl logs app1-6b664dc6cb-7xfpx
+[2022-03-13 14:39:23 +0000] [7] [INFO] Starting gunicorn 19.9.0
+[2022-03-13 14:39:23 +0000] [7] [INFO] Listening at: http://0.0.0.0:8000 (7)
+[2022-03-13 14:39:23 +0000] [7] [INFO] Using worker: sync
+[2022-03-13 14:39:23 +0000] [10] [INFO] Booting worker with pid: 10
+
+C:\Users\User>kubectl exec -it app1-6b664dc6cb-7xfpx
+error: you must specify at least one command for the container
+
+C:\Users\User>kubectl exec -it app1-6b664dc6cb-7xfpx bash
+kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
+root@app1-6b664dc6cb-7xfpx:/chatapplication# ls
+Requirement.txt  chat  chatapplication  dump.rdb  manage.py  page  req.txt  static
+root@app1-6b664dc6cb-7xfpx:/chatapplication# python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying sessions.0001_initial... OK
+root@app1-6b664dc6cb-7xfpx:/chatapplication# exit
+exit
+
+C:\Users\User>kubectl get svc
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
+backendapp       LoadBalancer   10.100.84.13     a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com   8000:30832/TCP   26m
+backendservice   LoadBalancer   10.100.148.179   ac3dcc1cc99a64947a2c7e73ccb3e076-143940512.us-east-2.elb.amazonaws.com    8000:31679/TCP   58m
+db-service       ClusterIP      10.100.228.79    <none>                                                                    3306/TCP         77m
+kubernetes       ClusterIP      10.100.0.1       <none>                                                                    443/TCP          107m
+
+C:\Users\User>telnet a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com 8000
+'telnet' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl exec -it app1-6b664dc6cb-7xfpx bash
+kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
+root@app1-6b664dc6cb-7xfpx:/chatapplication# telnet a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com 8000
+bash: telnet: command not found
+root@app1-6b664dc6cb-7xfpx:/chatapplication# telnet a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com 8000
+bash: telnet: command not found
+root@app1-6b664dc6cb-7xfpx:/chatapplication# telnet a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com 8000
+bash: telnet: command not found
+root@app1-6b664dc6cb-7xfpx:/chatapplication# exit
+exit
+command terminated with exit code 127
+
+C:\Users\User>telnet ac3dcc1cc99a64947a2c7e73ccb3e076-143940512.us-east-2.elb.amazonaws.com 8000
+'telnet' is not recognized as an internal or external command,
+operable program or batch file.
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          131m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          131m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          172m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          172m
+db-5696c95474-sn6lc      1/1     Running                      0          159m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          159m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             9          25m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          11s
+
+C:\Users\User>kubectl get svc
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
+backendapp       LoadBalancer   10.100.84.13     a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com   8000:30832/TCP   142m
+backendservice   ClusterIP      10.100.148.179   <none>                                                                    8000/TCP         174m
+db-service       ClusterIP      10.100.228.79    <none>                                                                    3306/TCP         3h13m
+kubernetes       ClusterIP      10.100.0.1       <none>                                                                    443/TCP          3h44m
+nginx-service    LoadBalancer   10.100.119.100   a82770837341f4fd8a36a60bc0a477e6-530753362.us-east-2.elb.amazonaws.com    80:30100/TCP     68m
+
+C:\Users\User>kubectl apply -f nginx-deployment.yaml
+deployment.apps/nginx configured
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          135m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          135m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          176m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          176m
+db-5696c95474-sn6lc      1/1     Running                      0          163m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          164m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             10         30m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          4m33s
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          136m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          136m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          176m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          176m
+db-5696c95474-sn6lc      1/1     Running                      0          164m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          164m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             10         30m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          5m6s
+              kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          137m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          137m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          178m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          178m
+db-5696c95474-sn6lc      1/1     Running                      0          165m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          166m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             11         32m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          6m39s
+
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          138m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          138m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          178m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          178m
+db-5696c95474-sn6lc      1/1     Running                      0          165m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          166m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             11         32m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          6m53s
+
+C:\Users\User>
+              kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          138m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          138m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          179m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          179m
+db-5696c95474-sn6lc      1/1     Running                      0          166m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          166m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             11         33m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          7m24s
+
+C:\Users\User>kubectl describe pod nginx-78f86bc69c-hf2lz
+Name:           nginx-78f86bc69c-hf2lz
+Namespace:      default
+Priority:       0
+Node:           ip-172-31-28-169.us-east-2.compute.internal/172.31.28.169
+Start Time:     Sun, 13 Mar 2022 22:20:30 +0530
+Labels:         app=nginx
+                pod-template-hash=78f86bc69c
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Pending
+IP:
+IPs:            <none>
+Controlled By:  ReplicaSet/nginx-78f86bc69c
+Containers:
+  nginx:
+    Container ID:
+    Image:          nginx:alpine
+    Image ID:
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /etc/nginx/conf.d/default.conf from nginx-config (rw,path="default.conf")
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-x6nv7 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             False
+  ContainersReady   False
+  PodScheduled      True
+Volumes:
+  nginx-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      nginx-config
+    Optional:  false
+  kube-api-access-x6nv7:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason       Age                  From               Message
+  ----     ------       ----                 ----               -------
+  Normal   Scheduled    8m                   default-scheduler  Successfully assigned default/nginx-78f86bc69c-hf2lz to ip-172-31-28-169.us-east-2.compute.internal
+  Warning  FailedMount  3m43s                kubelet            Unable to attach or mount volumes: unmounted volumes=[nginx-config], unattached volumes=[nginx-config kube-api-access-x6nv7]: timed out waiting for the condition
+  Warning  FailedMount  108s (x11 over 8m)   kubelet            MountVolume.SetUp failed for volume "nginx-config" : configmap "nginx-config" not found
+  Warning  FailedMount  86s (x2 over 5m57s)  kubelet            Unable to attach or mount volumes: unmounted volumes=[nginx-config], unattached volumes=[kube-api-access-x6nv7 nginx-config]: timed out waiting for the condition
+
+C:\Users\User>kubectl logs nginx-78f86bc69c-hf2lz
+Error from server (BadRequest): container "nginx" in pod "nginx-78f86bc69c-hf2lz" is waiting to start: ContainerCreating
+
+C:\Users\User>kubectl get congifmap
+^C
+C:\Users\User>Traceback (most recent call last):
+  File "docutils\writers\manpage.py", line 52, in <module>
+ModuleNotFoundError: No module named 'roman'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "aws", line 19, in <module>
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "PyInstaller\loader\pyimod03_importers.py", line 531, in exec_module
+  File "awscli\clidriver.py", line 41, in <module>
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "PyInstaller\loader\pyimod03_importers.py", line 531, in exec_module
+  File "awscli\help.py", line 21, in <module>
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "PyInstaller\loader\pyimod03_importers.py", line 531, in exec_module
+  File "docutils\writers\manpage.py", line 54, in <module>
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "PyInstaller\loader\pyimod03_importers.py", line 531, in exec_module
+  File "docutils\utils\roman.py", line 55, in <module>
+  File "C:\Python\lib\re.py", line 252, in compile
+  File "C:\Python\lib\re.py", line 304, in _compile
+  File "C:\Python\lib\sre_compile.py", line 764, in compile
+  File "C:\Python\lib\sre_parse.py", line 948, in parse
+  File "C:\Python\lib\sre_parse.py", line 443, in _parse_sub
+  File "C:\Python\lib\sre_parse.py", line 519, in _parse
+  File "C:\Python\lib\sre_parse.py", line 256, in get
+  File "C:\Python\lib\sre_parse.py", line 235, in __next
+KeyboardInterrupt
+[12164] Failed to execute script aws
+
+
+C:\Users\User>kubectl get congfigmap
+error: the server doesn't have a resource type "congfigmap"
+
+C:\Users\User>
+
+C:\Users\User>kubectl get configmap
+NAME               DATA   AGE
+app-configmap      4      3h6m
+kube-root-ca.crt   1      3h56m
+nginx-configmap    1      110m
+
+C:\Users\User>kubectl get deployment
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+app1    2/2     2            2           159m
+app2    0/2     2            0           3h11m
+db      1/1     1            1           179m
+mydb    1/1     1            1           3h31m
+nginx   0/1     1            0           86m
+
+C:\Users\User>kubectl edit deployment nginx
+
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>kubectl apply -f nginx-deployment.yaml
+deployment.apps/nginx unchanged
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          157m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          157m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          3h18m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h18m
+db-5696c95474-sn6lc      1/1     Running                      0          3h5m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          3h5m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             15         51m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          26m
+
+C:\Users\User>kubectl describe pod nginx-5ccb96558f-4rn48
+Name:         nginx-5ccb96558f-4rn48
+Namespace:    default
+Priority:     0
+Node:         ip-172-31-12-174.us-east-2.compute.internal/172.31.12.174
+Start Time:   Sun, 13 Mar 2022 21:54:53 +0530
+Labels:       app=nginx
+              pod-template-hash=5ccb96558f
+Annotations:  kubernetes.io/psp: eks.privileged
+Status:       Running
+IP:           172.31.12.102
+IPs:
+  IP:           172.31.12.102
+Controlled By:  ReplicaSet/nginx-5ccb96558f
+Containers:
+  nginx:
+    Container ID:   docker://39f69683d17a6bdb7466d6634ca4bd31b9af4f0009b0d010e91f3d72a37a44e8
+    Image:          nginx:alpine
+    Image ID:       docker-pullable://nginx@sha256:da9c94bec1da829ebd52431a84502ec471c8e548ffb2cedbf36260fd9bd1d4d3
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Sun, 13 Mar 2022 22:46:29 +0530
+      Finished:     Sun, 13 Mar 2022 22:46:29 +0530
+    Ready:          False
+    Restart Count:  15
+    Environment:    <none>
+    Mounts:
+      /etc/nginx/conf.d/default.conf from nginx-config (rw,path="default.conf")
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-fjd5j (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             False
+  ContainersReady   False
+  PodScheduled      True
+Volumes:
+  nginx-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      nginx-configmap
+    Optional:  false
+  kube-api-access-fjd5j:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                    From               Message
+  ----     ------     ----                   ----               -------
+  Normal   Scheduled  52m                    default-scheduler  Successfully assigned default/nginx-5ccb96558f-4rn48 to ip-172-31-12-174.us-east-2.compute.internal
+  Normal   Pulling    52m                    kubelet            Pulling image "nginx:alpine"
+  Normal   Pulled     52m                    kubelet            Successfully pulled image "nginx:alpine" in 1.760341911s
+  Normal   Created    51m (x5 over 52m)      kubelet            Created container nginx
+  Normal   Started    51m (x5 over 52m)      kubelet            Started container nginx
+  Normal   Pulled     51m (x4 over 52m)      kubelet            Container image "nginx:alpine" already present on machine
+  Warning  BackOff    2m38s (x235 over 52m)  kubelet            Back-off restarting failed container
+
+C:\Users\User>kubectl edit deployment nginx
+
+C:\Users\User>kubectl get deployment
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+app1    2/2     2            2           169m
+app2    0/2     2            0           3h21m
+db      1/1     1            1           3h8m
+mydb    1/1     1            1           3h41m
+nginx   0/1     1            0           96m
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          161m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          161m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          3h22m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h22m
+db-5696c95474-sn6lc      1/1     Running                      0          3h9m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          3h9m
+nginx-5ccb96558f-4rn48   0/1     CrashLoopBackOff             15         55m
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          30m
+
+C:\Users\User>kubelet delete pod nginx-5ccb96558f-4rn48
+'kubelet' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl delete pod nginx-5ccb96558f-4rn48
+pod "nginx-5ccb96558f-4rn48" deleted
+^C
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          162m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          162m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          3h23m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h23m
+db-5696c95474-sn6lc      1/1     Running                      0          3h10m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          3h11m
+nginx-5ccb96558f-q6jx8   0/1     CrashLoopBackOff             1          11s
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating            0          31m
+
+C:\Users\User>kubectl get pod nginx-78f86bc69c-hf2lz
+NAME                     READY   STATUS              RESTARTS   AGE
+nginx-78f86bc69c-hf2lz   0/1     ContainerCreating   0          32m
+
+C:\Users\User>kubectl delete pod nginx-78f86bc69c-hf2lz
+pod "nginx-78f86bc69c-hf2lz" deleted
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          163m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          163m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          3h24m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h24m
+db-5696c95474-sn6lc      1/1     Running                      0          3h11m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          3h12m
+nginx-5ccb96558f-q6jx8   0/1     CrashLoopBackOff             3          83s
+nginx-78f86bc69c-4vb46   0/1     ContainerCreating            0          15s
+
+C:\Users\User>kubectl delete pod nginx-5ccb96558f-4rn48
+Error from server (NotFound): pods "nginx-5ccb96558f-4rn48" not found
+
+C:\Users\User>kubectl edit configmap nginx-configmap
+
+C:\Users\User>nginx-78f86bc69c-hf2lznginx-78f86bc69c-hf2lznginx-78f86bc69c-hf2lz
+'nginx-78f86bc69c-hf2lznginx-78f86bc69c-hf2lznginx-78f86bc69c-hf2lz' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>
+C:\Users\User>kubectl apply -f nginx-deployment.yaml
+deployment.apps/nginx unchanged
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          169m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          169m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          3h29m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h29m
+db-5696c95474-sn6lc      1/1     Running                      0          3h17m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          3h17m
+nginx-5ccb96558f-q6jx8   0/1     CrashLoopBackOff             6          6m45s
+nginx-78f86bc69c-4vb46   0/1     ContainerCreating            0          5m37s
+
+C:\Users\User>kubectl apply -f nginx-deployment.yaml
+deployment.apps/nginx unchanged
+
+C:\Users\User>kubectl create configmap nginx-cfg  --from-file=default.conf
+configmap/nginx-cfg created
+
+C:\Users\User>kubectl apply -f nginx-deployment.yaml
+deployment.apps/nginx configured
+
+C:\Users\User>kublet get pods
+'kublet' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubelet get pods
+'kubelet' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          3h2m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          3h2m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          3h43m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h43m
+db-5696c95474-sn6lc      1/1     Running                      0          3h30m
+mydb-cd5fc5c8-bgqtb      1/1     Running
+pp2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h43m
+db-5696c95474-sn6lc      1/1     Running                      0          3h30m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          3h31m
+nginx-78f86bc69c-4vb46   0/1     ContainerCreating            0          19m
+nginx-796bfbcbdf-pjsvc   0/1     Error                        4          108s
+
+C:\Users\User>kubectl apply -f nginx-deployment.yaml
+deployment.apps/nginx configured
+
+C:\Users\User>kublet get pods
+'kublet' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>kubectl get pods
+NAME                     READY   STATUS                       RESTARTS   AGE
+app1-6b664dc6cb-7xfpx    1/1     Running                      0          3h4m
+app1-6b664dc6cb-mfkrk    1/1     Running                      0          3h4m
+app2-cf898466-gztr4      0/1     CreateContainerConfigError   0          3h45m
+app2-cf898466-z2ptg      0/1     CreateContainerConfigError   0          3h45m
+db-5696c95474-sn6lc      1/1     Running                      0          3h32m
+mydb-cd5fc5c8-bgqtb      1/1     Running                      0          3h33m
+nginx-79df77c795-6gm2d   1/1     Running                      0          22s
+
+C:\Users\User>kubectl get svc
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
+backendapp       LoadBalancer   10.100.84.13     a92eea12c7da244d6b7bf1f860bf2584-1111397374.us-east-2.elb.amazonaws.com   8000:30832/TCP   3h14m
+backendservice   ClusterIP      10.100.148.179   <none>                                                                    8000/TCP         3h46m
+db-service       ClusterIP      10.100.228.79    <none>                                                                    3306/TCP         4h5m
+kubernetes       ClusterIP      10.100.0.1       <none>                                                                    443/TCP          4h36m
+nginx-service    LoadBalancer   10.100.119.100   a82770837341f4fd8a36a60bc0a477e6-530753362.us-east-2.elb.amazonaws.com    80:30100/TCP     120m
+
+C:\Users\User>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
